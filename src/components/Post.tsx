@@ -44,7 +44,17 @@ function EditSvg() {
   );
 }
 
-function Post() {
+function Post({
+  id,
+  username,
+  title,
+  content,
+}: {
+  id: number;
+  username: string;
+  title: string;
+  content: string;
+}) {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -70,9 +80,9 @@ function Post() {
   };
 
   return (
-    <div className="Bubble Post">
+    <div className="Bubble Post" key={id}>
       <div className="Title">
-        <h2>My second post at CodeLeap Network</h2>
+        <h2>{title}</h2>
         <div className="Actions">
           <div>
             <div onClick={() => handleOpenModal("edit")}>
@@ -108,18 +118,10 @@ function Post() {
       </div>
       <div className="Content">
         <div className="Infos">
-          <h3>@Vini</h3>
+          <h3>@{username}</h3>
           <span>25 minutes ago</span>
         </div>
-        <p>
-          Curabitur suscipit suscipit tellus. Phasellus consectetuer vestibulum
-          elit. Pellentesque habitant morbi tristique senectus et netus et
-          malesuada fames ac turpis egestas. Maecenas egestas arcu quis ligula
-          mattis placerat. Duis vel nibh at velit scelerisque suscipit. Duis
-          lobortis massa imperdiet quam. Aenean posuere, tortor sed cursus
-          feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis
-          lacus. Fusce a quam. Nullam vel sem. Nullam cursus lacinia erat.
-        </p>
+        <p>{content}</p>
       </div>
     </div>
   );
