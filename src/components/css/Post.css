@@ -6,7 +6,7 @@
 }
 
 .Post {
-  padding: 0;
+  padding: 0 !important;
 }
 
 .Post .Title {
@@ -30,4 +30,13 @@
 .Post .Infos h3 {
   font-size: 1rem;
   font-weight: 600;
+}
+
+.Post .Actions {
+  display: flex;
+  gap: 5px;
+}
+
+.Post .Actions .Action {
+  cursor: pointer;
 }

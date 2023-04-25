@@ -1,5 +1,5 @@
 import Post from "../components/Post";
-import "./MP.css";
+import "./css/MP.css";
 
 function MainPage() {
   return (

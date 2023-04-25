@@ -3,15 +3,13 @@ import MainPage from "./pages/Mainpage";
 import "./index.css";
 
 function App() {
-  if (
-    window.location.pathname === "/" ||
-    window.location.pathname === "/signup"
-  ) {
+  const page = window.location.pathname.toLowerCase();
+  if (page === "/" || page === "/signup") {
     return <SignUp />;
-  } else if (window.location.pathname === "/mainpage") {
+  } else if (page === "/mainpage") {
     return <MainPage />;
   } else {
-    return <div>Page {window.location.pathname} not found</div>;
+    return <div>Page {page} not found</div>;
   }
 }
 

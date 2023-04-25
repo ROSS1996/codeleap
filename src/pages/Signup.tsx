@@ -1,9 +1,9 @@
-import "./signup.css";
+import "./css/signup.css";
 
 function SignUp() {
   return (
     <>
-      <div className="SignUp Bubble">
+      <div className="SignUp">
         <h2>Welcome to CodeLeap network!</h2>
         <form>
           <label htmlFor="username">Please enter your username</label>

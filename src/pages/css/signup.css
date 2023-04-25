@@ -1,26 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-:root {
-  --gray: rgba(221, 221, 221, 1);
-  --blue: rgba(118, 149, 236, 1);
-  --red: rgba(255, 81, 81, 1);
-  --green: rgba(71, 185, 96, 1);
-}
-
-body {
-  background-color: var(--gray);
-  font-family: "Roboto", sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.Bubble {
+.SignUp {
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -28,15 +6,16 @@ body {
   border-radius: 16px;
   padding: 15px;
   border: 1px solid #cccccc;
+  align-self: center;
 }
 
-.Bubble > form {
+.SignUp > form {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.Bubble > form > input {
+.SignUp > form > input {
   outline: none;
   border: 1px solid #777777;
   border-radius: 8px;
@@ -44,14 +23,14 @@ body {
   padding: 8px;
 }
 
-.Bubble > h2 {
+.SignUp > h2 {
   font-weight: 600;
   font-size: 1.2rem;
   font-weight: 700;
   line-height: 26px;
 }
 
-.Bubble > form > label {
+.SignUp > form > label {
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
@@ -60,7 +39,7 @@ body {
   cursor: pointer;
 }
 
-.Bubble button {
+.SignUp button {
   background-color: var(--blue);
   color: white;
   font-size: 1rem;
@@ -73,17 +52,4 @@ body {
   font-weight: 400;
   font-family: "Roboto", sans-serif;
   cursor: pointer;
-}
-
-.Title {
-  background-color: var(--blue);
-  color: white;
-  display: flex;
-  padding: 8px;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.Title h2 {
-  font-size: 1.3rem;
 }
