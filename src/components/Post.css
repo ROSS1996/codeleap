@@ -1,0 +1,33 @@
+.Posts {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Post {
+  padding: 0;
+}
+
+.Post .Title {
+  border-radius: 10px 10px 0 0;
+  padding: 15px;
+}
+
+.Post .Content {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.Post .Infos {
+  display: flex;
+  justify-content: space-between;
+  color: gray;
+}
+
+.Post .Infos h3 {
+  font-size: 1rem;
+  font-weight: 600;
+}
