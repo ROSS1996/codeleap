@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./css/Post.css";
+import { useSelector } from "react-redux";
 import Modal from "./Modal";
+import { State } from "../redux/store";
 
 function timeElapsed(dateTime: Date): string {
   const date = new Date(dateTime);
@@ -86,6 +88,8 @@ function Post({
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
+  const usernameLocal = useSelector((state: State) => state.username);
+
   const handleOpenModal = (modalType: string) => {
     if (modalType === "edit") {
       setIsEditModalOpen(true);
@@ -111,38 +115,42 @@ function Post({
     <div className="Bubble Post" key={id}>
       <div className="Title">
         <h2>{title}</h2>
-        <div className="Actions">
-          <div>
-            <div onClick={() => handleOpenModal("edit")}>
-              <EditSvg />
-            </div>
-            <Modal
-              onClose={handleCloseModal}
-              onAction={editAction}
-              isOpen={isEditModalOpen}
-              header="Edit item"
-              content={<p>Edit form</p>}
-              actionButtonText="Edit"
-              actionButtonColor="green"
-            />
-          </div>
-          <div>
+        {usernameLocal !== username ? (
+          false
+        ) : (
+          <div className="Actions">
             <div>
-              <div onClick={() => handleOpenModal("delete")}>
-                <DeleteSvg />
+              <div onClick={() => handleOpenModal("edit")}>
+                <EditSvg />
               </div>
               <Modal
                 onClose={handleCloseModal}
-                onAction={deleteAction}
-                isOpen={isDeleteModalOpen}
-                header="Are you sure you want to delete this item?"
-                content={<p></p>}
-                actionButtonText="Delete"
-                actionButtonColor="#dc3545"
+                onAction={editAction}
+                isOpen={isEditModalOpen}
+                header="Edit item"
+                content={<p>Edit form</p>}
+                actionButtonText="Edit"
+                actionButtonColor="green"
               />
             </div>
+            <div>
+              <div>
+                <div onClick={() => handleOpenModal("delete")}>
+                  <DeleteSvg />
+                </div>
+                <Modal
+                  onClose={handleCloseModal}
+                  onAction={deleteAction}
+                  isOpen={isDeleteModalOpen}
+                  header="Are you sure you want to delete this item?"
+                  content={<p></p>}
+                  actionButtonText="Delete"
+                  actionButtonColor="#dc3545"
+                />
+              </div>
+            </div>
           </div>
-        </div>
+        )}
       </div>
       <div className="Content">
         <div className="Infos">

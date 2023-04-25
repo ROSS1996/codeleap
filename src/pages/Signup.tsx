@@ -40,7 +40,7 @@ function SignUp() {
             value={username}
             onChange={handleUsernameChange}
           />
-          <button>Enter</button>
+          <button disabled={username.length === 0}>Enter</button>
         </form>
       </div>
     </>

@@ -23,7 +23,7 @@ function PostList({ posts }: { posts: PostData[] }) {
         <p>Loading posts...</p>
         <div className="loading-spinner"></div>
       </div>
-    ); // Render a loading message or a spinner
+    );
   }
 
   return (
@@ -50,7 +50,6 @@ function MainPage() {
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    // Add your form submission logic here
   };
 
   const [posts, setPosts] = useState<PostData[]>([]);
@@ -81,7 +80,16 @@ function MainPage() {
               value={content}
               onChange={(e) => setContent(e.target.value)}
             />
-            <button type="submit">Create</button>
+            <button
+              type="submit"
+              disabled={
+                title.length === 0 ||
+                content.length === 0 ||
+                usernameLocal === null
+              }
+            >
+              Create
+            </button>
           </form>
         </div>
         <div>
