@@ -87,3 +87,31 @@ body {
 .Title h2 {
   font-size: 1.3rem;
 }
+
+.loadingComponent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+
+.loadingComponent p {
+  font-weight: 600;
+}
+
+.loading-spinner {
+  border: 3px solid rgba(0, 0, 0, 0.2);
+  border-top-color: #000;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
