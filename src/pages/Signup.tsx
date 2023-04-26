@@ -39,6 +39,7 @@ function SignUp() {
             name="username"
             id="username"
             value={username}
+            placeholder="John Doe"
             onChange={handleUsernameChange}
           />
           <button disabled={username.length === 0}>Enter</button>

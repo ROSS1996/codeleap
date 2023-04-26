@@ -26,16 +26,23 @@ function PostForm() {
       <h2>What's on your mind?</h2>
       <label htmlFor="title">Title</label>
       <input
+        name="title"
+        id="title"
         type="text"
+        placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
       <label htmlFor="content">Content</label>
-      <input
-        type="text"
+      <textarea
+        name="content"
+        id="content"
+        cols={30}
+        rows={10}
         value={content}
+        placeholder="Content"
         onChange={(e) => setContent(e.target.value)}
-      />
+      ></textarea>
       <button type="submit" disabled={!title || !content}>
         Create
       </button>

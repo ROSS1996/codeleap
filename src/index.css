@@ -40,10 +40,18 @@ body {
   gap: 8px;
 }
 
-.Bubble > form > input {
+input {
   outline: none;
   border: 1px solid #777777;
-  border-radius: 8px;
+  border-radius: 5px;
+  text-indent: 5px;
+  padding: 8px;
+}
+
+form > textarea {
+  outline: none;
+  border: 1px solid #777777;
+  border-radius: 5px;
   text-indent: 5px;
   padding: 8px;
 }
