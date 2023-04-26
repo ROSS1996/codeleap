@@ -23,7 +23,6 @@ const useFetchPosts = (): FetchPostsResult => {
       );
       const data = await response.json();
       setPosts(data.results);
-      console.log("called");
     } catch (error) {
       console.error(error);
     }
