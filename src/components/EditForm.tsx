@@ -17,16 +17,20 @@ export default function EditForm({
         value={editedTitle}
         name="editedTitle"
         id="editedTitle"
+        required
         onChange={(e) => setEditedTitle(e.target.value)}
       />
       <label htmlFor="editedContent">Content</label>
-      <input
-        type="text"
-        value={editedContent}
+      <textarea
         name="editedContent"
         id="editedContent"
+        cols={30}
+        rows={10}
+        value={editedContent}
+        required
+        placeholder="Content"
         onChange={(e) => setEditedContent(e.target.value)}
-      />
+      ></textarea>
     </form>
   );
 }
