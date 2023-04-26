@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 
-interface PostData {
+export interface PostData {
   id: number;
   username: string;
   title: string;

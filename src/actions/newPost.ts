@@ -14,7 +14,7 @@ const createNewPost = async (newPost: NewPostData) => {
   });
 
   if (response.ok) {
-    alert("Post created successfully!");
+    return response;
   } else {
     console.error(response.statusText);
   }

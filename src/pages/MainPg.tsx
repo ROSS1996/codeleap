@@ -5,8 +5,14 @@ import { State } from "../redux/store";
 import { useNavigate } from "react-router-dom";
 import PostForm from "../components/PostForm";
 import PostList from "../components/PostList";
+import useFetchPosts from "../actions/getPosts";
 
 function MainPage() {
+  const { posts, fetchPosts } = useFetchPosts();
+  useEffect(() => {
+    fetchPosts();
+  }, [fetchPosts]);
+
   const usernameLocal = useSelector((state: State) => state.username);
   const navigate = useNavigate();
 
@@ -21,11 +27,11 @@ function MainPage() {
       <div className="Main">
         <h1 className="Title">CodeLeap Network</h1>
         <div className="Posts">
-          <PostForm />
+          <PostForm updatePosts={fetchPosts} />
         </div>
         <div>
           <Suspense fallback={<div className="loading-spinner"></div>}>
-            <PostList />
+            <PostList posts={posts} updatePosts={fetchPosts} />
           </Suspense>
         </div>
       </div>

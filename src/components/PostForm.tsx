@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { State } from "../redux/store";
 import createNewPost from "../actions/newPost";
 
-function PostForm() {
+function PostForm({ updatePosts }: { updatePosts: () => Promise<void> }) {
   const usernameLocal = useSelector((state: State) => state.username);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -15,8 +15,21 @@ function PostForm() {
       return;
     }
 
-    await createNewPost({ username: usernameLocal, title, content });
-
+    try {
+      const response = await createNewPost({
+        username: usernameLocal,
+        title,
+        content,
+      });
+      if (response?.ok) {
+        alert("Post created successfully");
+        updatePosts();
+      } else {
+        console.error(response?.statusText);
+      }
+    } catch (error) {
+      console.error(error);
+    }
     setTitle("");
     setContent("");
   };

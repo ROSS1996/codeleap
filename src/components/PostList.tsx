@@ -1,13 +1,13 @@
-import { useEffect } from "react";
-import useFetchPosts from "../actions/getPosts";
 import Post from "./Post";
+import { PostData } from "../actions/getPosts";
 
-function PostList() {
-  const { posts, fetchPosts } = useFetchPosts();
-  useEffect(() => {
-    fetchPosts();
-  }, [fetchPosts]);
-
+function PostList({
+  posts,
+  updatePosts,
+}: {
+  posts: PostData[];
+  updatePosts: () => Promise<void>;
+}) {
   if (!posts.length) {
     return (
       <div className="loadingComponent">
@@ -19,7 +19,7 @@ function PostList() {
 
   return (
     <div>
-      {posts.map((post: any) => (
+      {posts.map((post: PostData) => (
         <Post
           key={post.id}
           id={post.id}
@@ -27,7 +27,7 @@ function PostList() {
           title={post.title}
           content={post.content}
           dateTime={post.created_datetime}
-          updatePosts={fetchPosts}
+          updatePosts={updatePosts}
         />
       ))}
     </div>
