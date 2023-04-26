@@ -72,6 +72,34 @@ function EditSvg() {
   );
 }
 
+function EditForm({
+  editedTitle,
+  editedContent,
+  setEditedTitle,
+  setEditedContent,
+}: any) {
+  return (
+    <form>
+      <label htmlFor="editedTitle">Title</label>
+      <input
+        type="text"
+        value={editedTitle}
+        name="editedTitle"
+        id="editedTitle"
+        onChange={(e) => setEditedTitle(e.target.value)}
+      />
+      <label htmlFor="editedContent">Content</label>
+      <input
+        type="text"
+        value={editedContent}
+        name="editedContent"
+        id="editedContent"
+        onChange={(e) => setEditedContent(e.target.value)}
+      />
+    </form>
+  );
+}
+
 function Post({
   id,
   username,
@@ -88,6 +116,9 @@ function Post({
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
+  const [editedTitle, setEditedTitle] = useState(title);
+  const [editedContent, setEditedContent] = useState(content);
+
   const usernameLocal = useSelector((state: State) => state.username);
 
   const handleOpenModal = (modalType: string) => {
@@ -103,8 +134,35 @@ function Post({
     setIsDeleteModalOpen(false);
   };
 
-  const editAction = () => {
-    alert("Edit button clicked");
+  const editAction = async (
+    id: number,
+    editedTitle: string,
+    editedContent: string
+  ) => {
+    try {
+      const response = await fetch(
+        `https://dev.codeleap.co.uk/careers/${id}/`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: editedTitle,
+            content: editedContent,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        alert("Post edited successfully");
+        setIsEditModalOpen(false);
+      } else {
+        alert(response.statusText);
+      }
+    } catch (error) {
+      alert(error);
+    }
   };
 
   const deleteAction = async (id: number) => {
@@ -140,10 +198,17 @@ function Post({
               </div>
               <Modal
                 onClose={handleCloseModal}
-                onAction={editAction}
+                onAction={() => editAction(id, editedTitle, editedContent)}
                 isOpen={isEditModalOpen}
                 header="Edit item"
-                content={<p>Edit form</p>}
+                content={
+                  <EditForm
+                    editedTitle={editedTitle}
+                    editedContent={editedContent}
+                    setEditedTitle={setEditedTitle}
+                    setEditedContent={setEditedContent}
+                  />
+                }
                 actionButtonText="Edit"
                 actionButtonColor="green"
               />
