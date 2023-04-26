@@ -8,6 +8,15 @@ function PostList() {
     fetchPosts();
   }, [fetchPosts]);
 
+  if (!posts.length) {
+    return (
+      <div className="loadingComponent">
+        <p>Loading posts...</p>
+        <div className="loading-spinner"></div>
+      </div>
+    );
+  }
+
   return (
     <div>
       {posts.map((post: any) => (

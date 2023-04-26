@@ -23,7 +23,7 @@ function PostForm() {
 
   return (
     <form className="Bubble" onSubmit={handleSubmit}>
-      <h2>What's on your mind {usernameLocal}?</h2>
+      <h2>What's on your mind?</h2>
       <label htmlFor="title">Title</label>
       <input
         type="text"
