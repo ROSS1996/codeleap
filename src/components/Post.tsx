@@ -106,12 +106,14 @@ function Post({
   title,
   content,
   dateTime,
+  updatePosts,
 }: {
   id: number;
   username: string;
   title: string;
   content: string;
   dateTime: Date;
+  updatePosts: () => void;
 }) {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -156,6 +158,7 @@ function Post({
 
       if (response.ok) {
         alert("Post edited successfully");
+        updatePosts();
         setIsEditModalOpen(false);
       } else {
         alert(response.statusText);
@@ -175,6 +178,7 @@ function Post({
       );
       if (response.ok) {
         alert("Post deleted successfully");
+        updatePosts();
         setIsDeleteModalOpen(false);
       } else {
         console.error(response.statusText);

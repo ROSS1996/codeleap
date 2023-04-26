@@ -17,7 +17,13 @@ interface APIResponse {
   results: PostData[];
 }
 
-function PostList({ posts }: { posts: PostData[] }) {
+function PostList({
+  posts,
+  updatePosts,
+}: {
+  posts: PostData[];
+  updatePosts: () => void;
+}) {
   if (posts.length === 0) {
     return (
       <div className="loadingComponent">
@@ -37,6 +43,7 @@ function PostList({ posts }: { posts: PostData[] }) {
           title={post.title}
           content={post.content}
           dateTime={post.created_datetime}
+          updatePosts={updatePosts}
         />
       ))}
     </div>
@@ -51,11 +58,15 @@ function MainPage() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const fetchPosts = () => {
     fetch("https://dev.codeleap.co.uk/careers/?format=json")
       .then((response) => response.json() as Promise<APIResponse>)
       .then((data) => setPosts(data.results))
       .catch((error) => console.error(error));
+  };
+
+  useEffect(() => {
+    fetchPosts();
   }, []);
 
   const handleSubmit = async (event: FormEvent) => {
@@ -80,10 +91,7 @@ function MainPage() {
     if (response.ok) {
       alert("Post created successfully!");
       // Re-fetch the list of posts
-      fetch("https://dev.codeleap.co.uk/careers/?format=json")
-        .then((response) => response.json() as Promise<APIResponse>)
-        .then((data) => setPosts(data.results))
-        .catch((error) => console.error(error));
+      fetchPosts();
       setTitle("");
       setContent("");
     } else {
@@ -121,7 +129,7 @@ function MainPage() {
         </div>
         <div>
           <Suspense fallback={<div className="loading-spinner"></div>}>
-            <PostList posts={posts} />
+            <PostList posts={posts} updatePosts={fetchPosts} />
           </Suspense>
         </div>
       </div>
