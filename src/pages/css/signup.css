@@ -6,7 +6,8 @@
   border-radius: 16px;
   padding: 15px;
   border: 1px solid #cccccc;
-  align-self: center;
+  align-self: center !important;
+  width: fit-content;
 }
 
 .SignUp > form {

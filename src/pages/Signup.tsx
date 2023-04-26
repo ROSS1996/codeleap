@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { Action } from "redux";
 import { useNavigate } from "react-router-dom";
+import css from "./Signup.module.css";
 
 interface SetUsernameAction extends Action {
   payload: string;
@@ -28,7 +29,7 @@ function SignUp() {
   };
 
   return (
-    <>
+    <div className={css.center}>
       <div className="SignUp">
         <h2>Welcome to CodeLeap network!</h2>
         <form onSubmit={handleSubmit}>
@@ -43,7 +44,7 @@ function SignUp() {
           <button disabled={username.length === 0}>Enter</button>
         </form>
       </div>
-    </>
+    </div>
   );
 }
 

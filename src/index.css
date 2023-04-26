@@ -15,9 +15,13 @@
 body {
   background-color: var(--gray);
   font-family: "Roboto", sans-serif;
+}
+
+#root {
+  height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 .Bubble {
