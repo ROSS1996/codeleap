@@ -107,8 +107,23 @@ function Post({
     alert("Edit button clicked");
   };
 
-  const deleteAction = () => {
-    alert("Delete button clicked");
+  const deleteAction = async (id: number) => {
+    try {
+      const response = await fetch(
+        `https://dev.codeleap.co.uk/careers/${id}/`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (response.ok) {
+        alert("Post deleted successfully");
+        setIsDeleteModalOpen(false);
+      } else {
+        console.error(response.statusText);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -140,7 +155,7 @@ function Post({
                 </div>
                 <Modal
                   onClose={handleCloseModal}
-                  onAction={deleteAction}
+                  onAction={() => deleteAction(id)}
                   isOpen={isDeleteModalOpen}
                   header="Are you sure you want to delete this item?"
                   content={<p></p>}
