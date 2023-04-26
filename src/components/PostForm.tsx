@@ -31,6 +31,7 @@ function PostForm() {
         type="text"
         placeholder="Title"
         value={title}
+        required
         onChange={(e) => setTitle(e.target.value)}
       />
       <label htmlFor="content">Content</label>
@@ -40,6 +41,7 @@ function PostForm() {
         cols={30}
         rows={10}
         value={content}
+        required
         placeholder="Content"
         onChange={(e) => setContent(e.target.value)}
       ></textarea>

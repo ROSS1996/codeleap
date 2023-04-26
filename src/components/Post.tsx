@@ -93,7 +93,7 @@ function Post({
                   />
                 }
                 actionButtonText="Edit"
-                actionButtonColor="green"
+                actionButtonColor="#47b960"
               />
             </div>
             <div>
@@ -107,7 +107,7 @@ function Post({
                 header="Are you sure you want to delete this item?"
                 content={<p></p>}
                 actionButtonText="Delete"
-                actionButtonColor="#dc3545"
+                actionButtonColor="#ff5151"
               />
             </div>
           </div>

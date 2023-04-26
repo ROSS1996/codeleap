@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 interface PostData {
   id: number;
@@ -16,21 +16,22 @@ interface FetchPostsResult {
 const useFetchPosts = (): FetchPostsResult => {
   const [posts, setPosts] = useState<PostData[]>([]);
 
-  const fetchPosts = async () => {
+  const fetchPosts = useCallback(async () => {
     try {
       const response = await fetch(
         "https://dev.codeleap.co.uk/careers/?format=json"
       );
       const data = await response.json();
       setPosts(data.results);
+      console.log("called");
     } catch (error) {
       console.error(error);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [fetchPosts]);
 
   return { posts, fetchPosts };
 };
